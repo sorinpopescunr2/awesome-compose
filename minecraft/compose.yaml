@@ -11,3 +11,5 @@ services:
          memory: 1.5G
    volumes:
      - minecraft_data:data
+volumes:
+    minecraft_data:

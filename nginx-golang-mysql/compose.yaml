@@ -2,7 +2,7 @@ services:
   backend:
     build: backend
     secrets:
-      - db-password
+      - db-password=password
     depends_on:
       db:
         condition: service_healthy
@@ -19,12 +19,12 @@ services:
       retries: 5
       start_period: 30s
     secrets:
-      - db-password
+      - db-password=password
     volumes:
       - db-data:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=example
-      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password
+      - MYSQL_ROOT_PASSWORD=password
     expose:
       - 3306
   proxy:
@@ -35,6 +35,3 @@ services:
       - backend
 volumes:
   db-data:
-secrets:
-  db-password:
-    file: db/password.txt
